@@ -45,14 +45,14 @@ public class MazeEscape {
                 // Chiamare il metodo per muovere il giocatore
             	movePlayer(move);
                 // Verificare se ha raggiunto l'uscita e terminare il gioco
-            	if(playerX == LABIRINTO.length-1 && playerY == LABIRINTO[0].length)
+            	if(playerX == LABIRINTO.length-1 && playerY == LABIRINTO[0].length-1)
             	{
             		escaped = true;
             		System.out.println("Sei arrivato all'uscita!");
             	}
             } catch (OutOfBoundsException | WallCollisionException e) {
                 // Stampare il messaggio di errore dell'eccezione
-            	e.getMessage();
+            	System.out.println(e.getMessage());
             }
         }
 
@@ -73,16 +73,16 @@ public class MazeEscape {
         
         // Switch-case per aggiornare le nuove coordinate in base alla direzione
     	switch(direction) {
-    		case 'W':
+    		case 'D':
     			newY++;
     			break;
-    		case'S':
+    		case'A':
     			newY--;
     			break;
-    		case 'A':
+    		case 'W':
     			newX--;
     			break;
-    		case 'D':
+    		case 'S':
     			newX++;
     	}
         // Controllare se il movimento è fuori dalla matrice e lanciare OutOfBoundsException
@@ -107,8 +107,9 @@ public class MazeEscape {
     private static void printMaze() {
         for(int i = 0; i < LABIRINTO.length; i++) {
         	for(int j = 0; j < LABIRINTO[0].length; j++) {
-        		System.out.println(LABIRINTO[i][j]);
+        		System.out.print(LABIRINTO[i][j]);
         	}
+            System.out.println();
         }
     }
 }
